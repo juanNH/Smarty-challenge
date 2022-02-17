@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   text: string;
   action: () => void;
@@ -7,7 +5,7 @@ interface Props {
 
 const ButtonComponent = ({ text, action }: Props) => {
   return (
-    <div style={{padding:"10px"}}>
+    <div style={{ padding: "10px" }}>
       <button className="btn btn-primary" onClick={action}>
         {text}
       </button>
