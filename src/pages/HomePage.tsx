@@ -1,19 +1,28 @@
 import { useEffect, useMemo } from "react";
 import TdComponent from "../components/TdComponent";
 import { usePeliculas } from "../hooks/usePeliculas";
-import { useRender } from "../hooks/useRender";
+import { usePaginado } from "../hooks/usePaginado";
+import ButtonComponent from "../components/ButtonComponent";
 
 const HomePage = () => {
   const { isLoading, peliculas, randomLoading, sortPeliculas } = usePeliculas();
-  //const { films } = useRender(peliculas);
-  const films = useMemo(() => peliculas, [peliculas]);
-  useEffect(() => {
-  }, [randomLoading]);
+  const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
+  const films = useMemo(() => {
+    return peliculas.slice(page, page + 5);
+  }, [peliculas, page, randomLoading]);
+  useEffect(() => {}, [randomLoading]);
 
   return (
     <div>
       <h1>HomePage</h1>
-      <button onClick={sortPeliculas}>mezclar</button>
+      <ButtonComponent text="Mix" action={sortPeliculas} />
+      <h2>
+        Pagina {page / 5 + 1} -- Max paginas {Math.ceil(peliculas.length / 5)}
+      </h2>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <ButtonComponent text="Prev" action={prevPage} />
+        <ButtonComponent text="Next" action={nextPage} />
+      </div>
       <table className="table">
         <thead>
           <tr>
