@@ -4,12 +4,11 @@ import { usePeliculas } from "../hooks/usePeliculas";
 import { useRender } from "../hooks/useRender";
 
 const HomePage = () => {
-  const { isLoading, peliculas, sortPeliculas } = usePeliculas();
+  const { isLoading, peliculas, randomLoading, sortPeliculas } = usePeliculas();
   //const { films } = useRender(peliculas);
   const films = useMemo(() => peliculas, [peliculas]);
   useEffect(() => {
-      
-  }, [peliculas]);
+  }, [randomLoading]);
 
   return (
     <div>

@@ -49,6 +49,138 @@ export const getPeliculas = async (): Promise<Films> => {
         name: "string",
       },
     },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
+    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },    {
+      id: "string", //hashed id
+      name: "sstring",
+      rate: 1, //0 - 10
+      author: {
+        id: "string", //hashed id
+        name: "string",
+      },
+    },
   ];
   return data;
 };
