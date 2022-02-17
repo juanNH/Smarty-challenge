@@ -16,6 +16,20 @@ export const usePeliculas = () => {
     setPeliculas(peliculas.sort(func));
     setRandomLoading(!randomLoading);
   };
+
+  const randomRate = (ids: string[]) => {
+    const peliculasIterate = peliculas.map((pelicula) => {
+      if (ids.includes(pelicula.id)) {
+        return {
+          ...pelicula,
+          rate: Math.floor(Math.random() * 10) + 1,
+        };
+      } else {
+        return pelicula;
+      }
+    });
+    setPeliculas(peliculasIterate);
+  };
   const func = () => {
     return 0.5 - Math.random();
   };
@@ -28,5 +42,6 @@ export const usePeliculas = () => {
     peliculas,
     randomLoading,
     sortPeliculas,
+    randomRate,
   };
 };

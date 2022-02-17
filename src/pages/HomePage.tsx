@@ -3,23 +3,37 @@ import TdComponent from "../components/TdComponent";
 import { usePeliculas } from "../hooks/usePeliculas";
 import { usePaginado } from "../hooks/usePaginado";
 import ButtonComponent from "../components/ButtonComponent";
+import ButtonComponentProp from "../components/ButtonComponentProp";
 
 const HomePage = () => {
-  const { isLoading, peliculas, randomLoading, sortPeliculas } = usePeliculas();
+  const { isLoading, peliculas, randomLoading, sortPeliculas, randomRate } =
+    usePeliculas();
   const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
   const films = useMemo(() => {
     return peliculas.slice(page, page + 5);
   }, [peliculas, page, randomLoading]);
-  useEffect(() => {}, [randomLoading]);
-
+  useEffect(() => {}, [randomLoading, films]);
   return (
     <div>
       <h1>HomePage</h1>
       <ButtonComponent text="Mix" action={sortPeliculas} />
+      {films[0] && films[0].id && (
+        <ButtonComponentProp
+          text="RandomRate"
+          action={randomRate}
+          ids={[
+            films[0] && films[0].id,
+            films[1] && films[1].id,
+            films[2] && films[2].id,
+            films[3] && films[3].id,
+            films[4] && films[4].id,
+          ]}
+        />
+      )}
       <h2>
         Pagina {page / 5 + 1} -- Max paginas {Math.ceil(peliculas.length / 5)}
       </h2>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <ButtonComponent text="Prev" action={prevPage} />
         <ButtonComponent text="Next" action={nextPage} />
       </div>
