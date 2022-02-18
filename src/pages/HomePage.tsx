@@ -15,17 +15,25 @@ const HomePage = () => {
     randomRate,
     duplicateFilm,
     handleSelectValue,
+    sendFilms,
+    sendDataError,
   } = usePeliculas();
   const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
   const films = useMemo(() => {
     return peliculas.slice(page, page + 5);
   }, [peliculas, page, randomLoading]);
-  useEffect(() => {
-  }, [randomLoading, films]);
+  useEffect(() => {}, [randomLoading, films]);
+
   return (
     <div>
+      { sendDataError && 
+        <h1>Error</h1>
+      }
       <h1>HomePage</h1>
       <ButtonComponent text="Mix" action={sortPeliculas} />
+
+      <ButtonComponent text="Guardar" action={sendFilms} />
+
       {films[0] && films[0].id && (
         <ButtonComponentProp
           text="RandomRate"

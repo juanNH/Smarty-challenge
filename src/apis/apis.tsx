@@ -1,5 +1,10 @@
 import axios from "axios";
 import { Films } from "../types/types";
+
+interface Response {
+  status: number;
+}
+
 export const authors = [
   {
     id: "p",
@@ -22,7 +27,25 @@ export const authors = [
     name: "Ana",
   },
 ];
-export const getPeliculas = async (): Promise<Films> => {
+
+export const sendFilmsApi = async (dataToSend: Films): Promise<Response> => {
+  let dataResponse = { status: 0 };
+
+  try {
+    if (dataToSend.length) {
+      /* const { data } = await axios.post<Response>(
+    "www.sendPeliculas.com",
+    dataToSend
+  ); */
+      dataResponse = { status: 1 };
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  return dataResponse;
+};
+
+export const getFilmsApi = async (): Promise<Films> => {
   //const { data } = await axios.get<Films>("www.getPeliculas.com");
 
   const data = [
