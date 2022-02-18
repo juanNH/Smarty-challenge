@@ -21,7 +21,6 @@ export const usePeliculas = () => {
   const [sendData, setSendData] = useState<Response>({ status: 0 });
   const [sendDataError, setSendDataError] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(0);
-  // const films = useMemo<any>(() => peliculas, [peliculas]);
   const peliculasPromise = async () => {
     const peliculasResponse = await getFilmsApi();
     setOriginalFilms(peliculasResponse);
