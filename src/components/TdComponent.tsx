@@ -22,7 +22,6 @@ const TdComponent = ({
 }: Props) => {
   return (
     <tr style={{ alignItems: "center" }}>
-      <th>{id}</th>
       <td>{name}</td>
       <td>{rate}</td>
       <select

@@ -53,7 +53,6 @@ const HomePage = () => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">id</th>
             <th scope="col">nombre</th>
             <th scope="col">rate</th>
             <th scope="col">Autor</th>
