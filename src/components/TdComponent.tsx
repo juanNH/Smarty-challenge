@@ -1,12 +1,30 @@
-import React from "react";
-import { Film } from "../types/types";
+import { Author } from "../types/types";
+import ButtonComponentProp from "./ButtonComponentProp";
 
-const TdComponent = ({ id, name, rate, author }: Film) => {
+interface Props {
+  id: string;
+  name: string;
+  rate: number;
+  author: Author;
+  duplicateFilm: (props: any) => void;
+}
+
+const TdComponent = ({ id, name, rate, author, duplicateFilm }: Props) => {
   return (
-    <tr>
-      <th scope="row">{id}</th>
+    <tr style={{ alignItems: "center" }}>
+      <th>{id}</th>
       <td>{name}</td>
       <td>{rate}</td>
+      <td>
+        <ButtonComponentProp
+          text="Clonar"
+          ids={id}
+          name={name}
+          rate={rate}
+          author={author}
+          action={duplicateFilm}
+        />
+      </td>
     </tr>
   );
 };
