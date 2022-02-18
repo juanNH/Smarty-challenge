@@ -1,15 +1,17 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import TdComponent from "../components/TdComponent";
-import { usePeliculas } from "../hooks/usePeliculas";
-import { usePaginado } from "../hooks/usePaginado";
+import { usePeliculas } from "../hooks/useFilms";
+import { usePaginado } from "../hooks/usePages";
 import ButtonComponent from "../components/ButtonComponent";
 import ButtonComponentProp from "../components/ButtonComponentProp";
 import { authors } from "./../apis/apis";
+import { perPage } from "./../constants/Constants";
+import { GetFilmsIds } from "../helpers/GetFilmsIds";
 
 const HomePage = () => {
   const {
     isLoading,
-    peliculas,
+    filmsData,
     randomLoading,
     sortPeliculas,
     randomRate,
@@ -18,37 +20,31 @@ const HomePage = () => {
     sendFilms,
     sendDataError,
   } = usePeliculas();
-  const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
+  const { page, nextPage, prevPage } = usePaginado(filmsData.length - perPage);
   const films = useMemo(() => {
-    return peliculas.slice(page, page + 5);
-  }, [peliculas, page, randomLoading]);
-  useEffect(() => {}, [randomLoading, films]);
+    return filmsData.slice(page, page + perPage);
+  }, [filmsData, page, randomLoading]);
+
+  const filmsIds = GetFilmsIds(films);
 
   return (
     <div>
-      { sendDataError && 
-        <h1>Error</h1>
-      }
+      {sendDataError && <h1>Error</h1>}
       <h1>HomePage</h1>
       <ButtonComponent text="Mix" action={sortPeliculas} />
 
       <ButtonComponent text="Guardar" action={sendFilms} />
 
-      {films[0] && films[0].id && (
+      {films && (
         <ButtonComponentProp
           text="RandomRate"
           action={randomRate}
-          ids={[
-            films[0] && films[0].id,
-            films[1] && films[1].id,
-            films[2] && films[2].id,
-            films[3] && films[3].id,
-            films[4] && films[4].id,
-          ]}
+          ids={filmsIds}
         />
       )}
       <h2>
-        Pagina {page / 5 + 1} -- Max paginas {Math.ceil(peliculas.length / 5)}
+        Pagina {page / perPage + 1} -- Max paginas{" "}
+        {Math.ceil(filmsData.length / perPage)}
       </h2>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <ButtonComponent text="Prev" action={prevPage} />
@@ -66,10 +62,10 @@ const HomePage = () => {
         </thead>
         <tbody>
           {!isLoading &&
-            films.map(({ id, name, rate, author }, index) => {
+            films.map(({ id, name, rate, author }) => {
               return (
                 <TdComponent
-                  key={index}
+                  key={id}
                   id={id}
                   name={name}
                   rate={rate}

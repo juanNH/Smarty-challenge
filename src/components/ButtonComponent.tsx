@@ -1,15 +1,23 @@
+import styled from 'styled-components';
+
 interface Props {
   text: string;
   action: () => void;
 }
 
+const Box = styled.div`
+padding: "10px";
+`;
+
+
 const ButtonComponent = ({ text, action }: Props) => {
+
   return (
-    <div style={{ padding: "10px" }}>
+    <Box>
       <button className="btn btn-primary" onClick={action}>
         {text}
       </button>
-    </div>
+    </Box>
   );
 };
 
