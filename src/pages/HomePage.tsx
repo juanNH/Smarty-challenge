@@ -4,6 +4,7 @@ import { usePeliculas } from "../hooks/usePeliculas";
 import { usePaginado } from "../hooks/usePaginado";
 import ButtonComponent from "../components/ButtonComponent";
 import ButtonComponentProp from "../components/ButtonComponentProp";
+import { authors } from "./../apis/apis";
 
 const HomePage = () => {
   const {
@@ -13,12 +14,14 @@ const HomePage = () => {
     sortPeliculas,
     randomRate,
     duplicateFilm,
+    handleSelectValue,
   } = usePeliculas();
   const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
   const films = useMemo(() => {
     return peliculas.slice(page, page + 5);
   }, [peliculas, page, randomLoading]);
-  useEffect(() => {}, [randomLoading, films]);
+  useEffect(() => {
+  }, [randomLoading, films]);
   return (
     <div>
       <h1>HomePage</h1>
@@ -49,6 +52,7 @@ const HomePage = () => {
             <th scope="col">id</th>
             <th scope="col">nombre</th>
             <th scope="col">rate</th>
+            <th scope="col">Autor</th>
             <th scope="col">#</th>
           </tr>
         </thead>
@@ -63,6 +67,8 @@ const HomePage = () => {
                   rate={rate}
                   author={author}
                   duplicateFilm={duplicateFilm}
+                  authors={authors}
+                  handleSelectValue={handleSelectValue}
                 />
               );
             })}
