@@ -2,7 +2,7 @@ import { stringify } from "querystring";
 import { useEffect, useState } from "react";
 import { getPeliculas } from "../apis/apis";
 import { Author, Films } from "../types/types";
-
+import { authors } from "./../apis/apis";
 interface RandomRateProps {
   ids: string[];
 }
@@ -42,8 +42,33 @@ export const usePeliculas = () => {
     setPeliculas(peliculasIterate);
   };
 
+  const handleSelectValue =(e: any, id: string) => {
+    let authorId: string = e.target.value;
+    let authorName: string = "";
+    const peliculasIterate = peliculas.map((pelicula) => {
+      if (pelicula.id === id) {
+        for (let i = 0; i < authors.length; i++) {
+          if (authors[i].id === authorId) {
+            authorName = authors[i].name;
+            break;
+          }
+        }
+        return {
+          ...pelicula,
+          author: {
+            name: authorName,
+            id: authorId,
+          },
+        };
+      } else {
+        return pelicula;
+      }
+    });
+    setPeliculas(peliculasIterate);
+  };
+
   const duplicateFilm = ({ author, ids, name, rate }: DuplicateFilmProps) => {
-    let id = ids.substring(0, 3).concat(Date.now().toString());
+    let id = ids;
     setPeliculas([
       ...peliculas,
       {
@@ -68,5 +93,6 @@ export const usePeliculas = () => {
     sortPeliculas,
     randomRate,
     duplicateFilm,
+    handleSelectValue,
   };
 };

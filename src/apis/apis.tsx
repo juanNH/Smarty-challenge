@@ -1,16 +1,38 @@
 import axios from "axios";
 import { Films } from "../types/types";
-
+export const authors = [
+  {
+    id: "p",
+    name: "Juan",
+  },
+  {
+    id: "i",
+    name: "David",
+  },
+  {
+    id: "u",
+    name: "Pepe",
+  },
+  {
+    id: "y",
+    name: "Toto",
+  },
+  {
+    id: "t",
+    name: "Ana",
+  },
+];
 export const getPeliculas = async (): Promise<Films> => {
   //const { data } = await axios.get<Films>("www.getPeliculas.com");
+
   const data = [
     {
       id: "q", //hashed id
       name: "strinsssssg",
       rate: 5, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[0].id, //hashed id
+        name: authors[0].name,
       },
     },
     {
@@ -18,8 +40,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "strinsg",
       rate: 4, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[1].id, //hashed id
+        name: authors[1].name,
       },
     },
     {
@@ -27,8 +49,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "strinssg",
       rate: 3, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[2].id, //hashed id
+        name: authors[2].name,
       },
     },
     {
@@ -36,8 +58,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "ssstring",
       rate: 2, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[3].name, //hashed id
+        name: authors[3].name,
       },
     },
     {
@@ -45,8 +67,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[4].id, //hashed id
+        name: authors[4].name,
       },
     },
     {
@@ -54,8 +76,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[0].id, //hashed id
+        name: authors[0].name,
       },
     },
     {
@@ -63,8 +85,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[1].id, //hashed id
+        name: authors[1].name,
       },
     },
     {
@@ -72,8 +94,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[2].id, //hashed id
+        name: authors[2].name,
       },
     },
 
@@ -82,8 +104,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[3].id, //hashed id
+        name: authors[3].name,
       },
     },
     {
@@ -91,8 +113,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[4].id, //hashed id
+        name: authors[4].name,
       },
     },
     {
@@ -100,8 +122,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[0].id, //hashed id
+        name: authors[0].name,
       },
     },
 
@@ -110,8 +132,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[1].id, //hashed id
+        name: authors[1].name,
       },
     },
     {
@@ -119,8 +141,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[2].id, //hashed id
+        name: authors[2].name,
       },
     },
     {
@@ -128,8 +150,8 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[3].id, //hashed id
+        name: authors[3].name,
       },
     },
     {
@@ -137,86 +159,90 @@ export const getPeliculas = async (): Promise<Films> => {
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[4].id, //hashed id
+        name: authors[4].name,
       },
-    },    {
+    },
+    {
       id: "h", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[0].id, //hashed id
+        name: authors[0].name,
       },
-    },    {
+    },
+    {
       id: "j", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[1].id, //hashed id
+        name: authors[1].name,
       },
-    },    {
+    },
+    {
       id: "k", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[2].id, //hashed id
+        name: authors[2].name,
       },
-    },    {
+    },
+    {
       id: "l", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[3].id, //hashed id
+        name: authors[3].name,
       },
-    },    {
+    },
+    {
       id: "z", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[4].id, //hashed id
+        name: authors[4].name,
       },
-      
-    }, {
+    },
+    {
       id: "x", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[0].id, //hashed id
+        name: authors[0].name,
       },
-      
-    }, {
+    },
+    {
       id: "c", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[1].id, //hashed id
+        name: authors[1].name,
       },
-      
-    }, {
+    },
+    {
       id: "v", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[2].id, //hashed id
+        name: authors[2].name,
       },
-      
-    }, {
+    },
+    {
       id: "b", //hashed id
       name: "sstring",
       rate: 1, //0 - 10
       author: {
-        id: "string", //hashed id
-        name: "string",
+        id: authors[3].id, //hashed id
+        name: authors[3].name,
       },
-      
     },
   ];
   return data;
