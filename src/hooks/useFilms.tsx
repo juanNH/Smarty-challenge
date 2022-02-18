@@ -15,32 +15,34 @@ interface Response {
 }
 export const usePeliculas = () => {
   const [isLoading, setLoading] = useState<Boolean>(true);
-  const [peliculas, setPeliculas] = useState<Films>([]);
+  const [filmsData, setPeliculas] = useState<Films>([]);
   const [originalFilms, setOriginalFilms] = useState<Films>([]);
   const [randomLoading, setRandomLoading] = useState<Boolean>(false);
   const [sendData, setSendData] = useState<Response>({ status: 0 });
   const [sendDataError, setSendDataError] = useState<boolean>(false);
+  const [counter, setCounter] = useState<number>(0);
   // const films = useMemo<any>(() => peliculas, [peliculas]);
   const peliculasPromise = async () => {
     const peliculasResponse = await getFilmsApi();
     setOriginalFilms(peliculasResponse);
     setPeliculas(peliculasResponse);
+    setCounter(peliculasResponse.length);
     setLoading(false);
   };
   const sortPeliculas = () => {
-    setPeliculas(peliculas.sort(func));
+    setPeliculas(filmsData.sort(func));
     setRandomLoading(!randomLoading);
   };
 
   const randomRate = (ids: RandomRateProps) => {
-    const peliculasIterate = peliculas.map((pelicula) => {
-      if (ids.ids.includes(pelicula.id)) {
+    const peliculasIterate = filmsData.map((film) => {
+      if (ids.ids.includes(film.id)) {
         return {
-          ...pelicula,
+          ...film,
           rate: Math.floor(Math.random() * 10) + 1,
         };
       } else {
-        return pelicula;
+        return film;
       }
     });
     setPeliculas(peliculasIterate);
@@ -49,34 +51,35 @@ export const usePeliculas = () => {
   const handleSelectValue = (e: any, id: string) => {
     let authorId: string = e.target.value;
     let authorName: string = "";
-    const peliculasIterate = peliculas.map((pelicula) => {
-      if (pelicula.id === id) {
-        for (let i = 0; i < authors.length; i++) {
-          if (authors[i].id === authorId) {
-            authorName = authors[i].name;
+    const peliculasIterate = filmsData.map((film) => {
+      if (film.id === id) {
+        for (let author of authors) {
+          if (author.id === authorId) {
+            authorName = author.name;
             break;
           }
         }
         return {
-          ...pelicula,
+          ...film,
           author: {
             name: authorName,
             id: authorId,
           },
         };
       } else {
-        return pelicula;
+        return film;
       }
     });
     setPeliculas(peliculasIterate);
   };
 
-  const duplicateFilm = ({ author, ids, name, rate }: DuplicateFilmProps) => {
-    let id = ids;
+  const duplicateFilm = ({ author, name, rate }: DuplicateFilmProps) => {
+    setCounter(counter + 1);
+    console.log(counter);
     setPeliculas([
-      ...peliculas,
+      ...filmsData,
       {
-        id,
+        id: counter.toString(),
         name,
         rate,
         author,
@@ -86,14 +89,14 @@ export const usePeliculas = () => {
 
   const sendFilms = async () => {
     let filmsModified = [];
-    for (let i = 0; i < originalFilms.length; i++) {
-      for (let j = 0; j < peliculas.length; j++) {
-        if (peliculas[j].id === originalFilms[i].id) {
+    for (let originalFilm of originalFilms) {
+      for (let pelicula of filmsData) {
+        if (pelicula.id === originalFilm.id) {
           if (
-            peliculas[j].rate !== originalFilms[i].rate ||
-            peliculas[j].author.id !== originalFilms[i].author.id
+            pelicula.rate !== originalFilm.rate ||
+            pelicula.author.id !== originalFilm.author.id
           ) {
-            filmsModified.push(peliculas[i]);
+            filmsModified.push(pelicula);
           }
           break;
         }
@@ -117,7 +120,7 @@ export const usePeliculas = () => {
 
   return {
     isLoading,
-    peliculas,
+    filmsData,
     randomLoading,
     sortPeliculas,
     randomRate,

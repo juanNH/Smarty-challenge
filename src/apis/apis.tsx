@@ -37,6 +37,7 @@ export const sendFilmsApi = async (dataToSend: Films): Promise<Response> => {
     "www.sendPeliculas.com",
     dataToSend
   ); */
+  console.log(dataToSend)
       dataResponse = { status: 1 };
     }
   } catch (err) {
