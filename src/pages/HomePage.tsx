@@ -6,8 +6,14 @@ import ButtonComponent from "../components/ButtonComponent";
 import ButtonComponentProp from "../components/ButtonComponentProp";
 
 const HomePage = () => {
-  const { isLoading, peliculas, randomLoading, sortPeliculas, randomRate } =
-    usePeliculas();
+  const {
+    isLoading,
+    peliculas,
+    randomLoading,
+    sortPeliculas,
+    randomRate,
+    duplicateFilm,
+  } = usePeliculas();
   const { page, nextPage, prevPage } = usePaginado(peliculas.length - 5);
   const films = useMemo(() => {
     return peliculas.slice(page, page + 5);
@@ -43,6 +49,7 @@ const HomePage = () => {
             <th scope="col">id</th>
             <th scope="col">nombre</th>
             <th scope="col">rate</th>
+            <th scope="col">#</th>
           </tr>
         </thead>
         <tbody>
@@ -55,6 +62,7 @@ const HomePage = () => {
                   name={name}
                   rate={rate}
                   author={author}
+                  duplicateFilm={duplicateFilm}
                 />
               );
             })}

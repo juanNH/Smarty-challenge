@@ -1,6 +1,17 @@
-import { useEffect, useState, useMemo } from "react";
+import { stringify } from "querystring";
+import { useEffect, useState } from "react";
 import { getPeliculas } from "../apis/apis";
-import { Films } from "../types/types";
+import { Author, Films } from "../types/types";
+
+interface RandomRateProps {
+  ids: string[];
+}
+interface DuplicateFilmProps {
+  author: Author;
+  ids: string;
+  name: string;
+  rate: number;
+}
 
 export const usePeliculas = () => {
   const [isLoading, setLoading] = useState<Boolean>(true);
@@ -17,9 +28,9 @@ export const usePeliculas = () => {
     setRandomLoading(!randomLoading);
   };
 
-  const randomRate = (ids: string[]) => {
+  const randomRate = (ids: RandomRateProps) => {
     const peliculasIterate = peliculas.map((pelicula) => {
-      if (ids.includes(pelicula.id)) {
+      if (ids.ids.includes(pelicula.id)) {
         return {
           ...pelicula,
           rate: Math.floor(Math.random() * 10) + 1,
@@ -29,6 +40,19 @@ export const usePeliculas = () => {
       }
     });
     setPeliculas(peliculasIterate);
+  };
+
+  const duplicateFilm = ({ author, ids, name, rate }: DuplicateFilmProps) => {
+    let id = ids.substring(0, 3).concat(Date.now().toString());
+    setPeliculas([
+      ...peliculas,
+      {
+        id,
+        name,
+        rate,
+        author,
+      },
+    ]);
   };
   const func = () => {
     return 0.5 - Math.random();
@@ -43,5 +67,6 @@ export const usePeliculas = () => {
     randomLoading,
     sortPeliculas,
     randomRate,
+    duplicateFilm,
   };
 };
